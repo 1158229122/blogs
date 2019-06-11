@@ -1,0 +1,26 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /blogs
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.175:3306/blogs?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueri&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    timeout: 3000
+    database: 1
+mybatis:
+  mapper-locations: classpath:com/gtcmaile/blogs/web/dao/mapper/*Mapper.xml
+  type-aliases-package: classpath:com.gtcmaile.blogs.pojo
+logging:
+  level:
+    com.gtcmaile.blogs.web.api : info
+    #指定xml的文件的路径
+#配置redis
+
