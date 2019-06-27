@@ -37,9 +37,6 @@ public class UserController {
         return userService.register(user);
     }
     @ApiOperation(value = "登录" ,  notes="登录")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户标识", required = true, paramType = "email", dataType = "String")
-    })
     @PostMapping("login")
     public Result login(User user){
         return userService.login(user);

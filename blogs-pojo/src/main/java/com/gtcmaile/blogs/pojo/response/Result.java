@@ -121,4 +121,12 @@ public class Result<T> {
         this.msg = msg;
         this.data = data;
     }
+
+    public static Result auto(Boolean boole) {
+        if(boole!=null&&boole){
+            return Result.success(null);
+        }else{
+            return Result.build(Error.DEFAULT_ERROR,"操作失败!");
+        }
+    }
 }

@@ -4,7 +4,9 @@ import com.getmaile.blogs.constant.Error;
 import com.getmaile.blogs.constant.LoginConstant;
 import com.gtcmaile.blogs.pojo.User;
 import com.gtcmaile.blogs.pojo.response.Result;
+import com.gtcmaile.blogs.util.MailUtils;
 import com.gtcmaile.blogs.util.StringUtils;
+import com.gtcmaile.blogs.util.UuidUtil;
 import com.gtcmaile.blogs.web.dao.UserMapper;
 import com.gtcmaile.blogs.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +58,15 @@ public class UserServiceImpl implements UserService {
         User login = userMapper.login(user);
         if (login!=null){
             //使用uuid生成token
-            String uuid = UUID.randomUUID().toString();
+            String uuid = UuidUtil.getUuid();
             login.setToken(uuid);
             redisTemplate.boundValueOps(StringUtils.concat("LoginUsers",user.getId()+"")).set(user);
             redisTemplate.expire(StringUtils.concat("LoginUsers",user.getId()+""), LoginConstant.LOGIN_OUT_TIME, TimeUnit.DAYS);
+            if (login.getStaus()==2){
+                return Result.build(Error.NO_ACTIVATE_ERROR,"账号未激活");
+            }else if (login.getStaus()==1){
+                return Result.build(Error.USER_CLOSE,"账号被封禁");
+            }
             return Result.success(login);
         }
         return Result.build(Error.DEFAULT_ERROR,"登录失败");
@@ -67,6 +74,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result getCheck(String email) {
-        return null;
+        String check = UuidUtil.getCheck();
+        redisTemplate.boundValueOps(email).set(check,5,TimeUnit.MINUTES);
+        boolean boole = MailUtils.sendMail(email, StringUtils.concat("您的验证码是:", check), "验证码");
+        return Result.auto(boole);
     }
 }
