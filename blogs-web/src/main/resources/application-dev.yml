@@ -3,12 +3,14 @@ server:
   servlet:
     context-path: /blogs
 spring:
+#  数据库开发环境链接信息
   datasource:
     username: root
     password: 123456
     url: jdbc:mysql://192.168.1.175:3306/blogs?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueri&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+#  redis开发环境连接信息
   redis:
     host: 127.0.0.1
     port: 6379
@@ -20,7 +22,6 @@ mybatis:
   type-aliases-package: classpath:com.gtcmaile.blogs.pojo
 logging:
   level:
-    com.gtcmaile.blogs.web.api : info
-    #指定xml的文件的路径
-#配置redis
+    com.gtcmaile.blogs.web : debug
+
 

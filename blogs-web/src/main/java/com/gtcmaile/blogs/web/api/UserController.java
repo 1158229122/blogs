@@ -46,4 +46,9 @@ public class UserController {
     public Result getCheck(String email){
         return userService.getCheck(email);
     }
+    @ApiOperation(value = "是否登录" ,  notes="是否登录中")
+    @GetMapping("isLogin")
+    public Result isLogin(Integer userID,String token){
+        return userService.isLogin(userID,token);
+    }
 }

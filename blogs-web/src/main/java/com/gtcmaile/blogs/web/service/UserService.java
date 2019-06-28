@@ -32,4 +32,12 @@ public interface UserService {
      * @return
      */
     Result getCheck(String email);
+
+    /**
+     * 是否处于登录状态
+     * @param userID
+     * @param token
+     * @return
+     */
+    Result isLogin(Integer userID, String token);
 }

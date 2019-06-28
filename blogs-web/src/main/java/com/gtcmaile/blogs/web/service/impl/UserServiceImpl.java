@@ -9,6 +9,8 @@ import com.gtcmaile.blogs.util.StringUtils;
 import com.gtcmaile.blogs.util.UuidUtil;
 import com.gtcmaile.blogs.web.dao.UserMapper;
 import com.gtcmaile.blogs.web.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private RedisTemplate redisTemplate;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public Result getAll() {
         return Result.success(userMapper.selectByExample(null));
@@ -57,19 +61,24 @@ public class UserServiceImpl implements UserService {
     public Result login(User user) {
         User login = userMapper.login(user);
         if (login!=null){
-            //使用uuid生成token
-            String uuid = UuidUtil.getUuid();
-            login.setToken(uuid);
-            redisTemplate.boundValueOps(StringUtils.concat("LoginUsers",user.getId()+"")).set(user);
-            redisTemplate.expire(StringUtils.concat("LoginUsers",user.getId()+""), LoginConstant.LOGIN_OUT_TIME, TimeUnit.DAYS);
-            if (login.getStaus()==2){
-                return Result.build(Error.NO_ACTIVATE_ERROR,"账号未激活");
+            if (login.getStaus()==0){
+                //使用uuid生成token
+                String uuid = UuidUtil.getUuid();
+                login.setToken(uuid);
+                redisTemplate.boundValueOps(StringUtils.concat("LoginUsers",login.getId()+"")).set(login);
+                //登录超时7天后过期
+                redisTemplate.expire(StringUtils.concat("LoginUsers",login.getId()+""), LoginConstant.LOGIN_OUT_TIME, TimeUnit.DAYS);
+                return Result.success(login);
             }else if (login.getStaus()==1){
                 return Result.build(Error.USER_CLOSE,"账号被封禁");
+            }else if(login.getStaus()==2){
+                return Result.build(Error.NO_ACTIVATE_ERROR,"账号未激活");
+            }else {
+                return Result.build(Error.DEFAULT_ERROR,"发生未知错误");
             }
-            return Result.success(login);
+
         }
-        return Result.build(Error.DEFAULT_ERROR,"登录失败");
+        return Result.build(Error.ERROR_PASSWORD_OR_USER,"用户名或密码错误");
     }
 
     @Override
@@ -78,5 +87,20 @@ public class UserServiceImpl implements UserService {
         redisTemplate.boundValueOps(email).set(check,5,TimeUnit.MINUTES);
         boolean boole = MailUtils.sendMail(email, StringUtils.concat("您的验证码是:", check), "验证码");
         return Result.auto(boole);
+    }
+
+    @Override
+    public Result isLogin(Integer userID, String token) {
+        try{
+            User loginUsers = (User) redisTemplate.boundValueOps(StringUtils.concat("LoginUsers", userID + "")).get();
+            if (loginUsers.getToken().equals(token)){
+                return Result.success(true);
+            }
+        }catch (Exception e){
+            //主要防止空指针
+            logger.info(e.getMessage());
+            return Result.error("发生未知错误");
+        }
+        return Result.success(false);
     }
 }
