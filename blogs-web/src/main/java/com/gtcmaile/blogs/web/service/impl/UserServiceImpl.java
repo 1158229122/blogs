@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +33,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result getAll() {
-        return Result.success(userMapper.selectByExample(null));
+        long time = new Date().getTime();
+        List<User> users = userMapper.getAll();
+        long time1 = new Date().getTime();
+        System.out.println(time1-time);
+        return Result.success(users);
     }
 
     @Override
@@ -53,8 +59,8 @@ public class UserServiceImpl implements UserService {
                 return Result.build(Error.DEFAULT_ERROR,"该邮箱已被注册");
             }
         }
-
-        return Result.autoResult(userMapper.insertSelective(user));
+//        userMapper.insertSelective(user)
+        return Result.autoResult(1);
     }
 
     @Override

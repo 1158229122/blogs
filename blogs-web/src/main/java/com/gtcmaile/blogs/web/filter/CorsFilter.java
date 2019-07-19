@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 /**
  * created by jim on 19-6-10 下午3:45
- * 设置可以访问的方法，解决第一次试探
+ * 设置可以访问的方法，解决第一次试探以及跨域请求
  */
 @Component
 public class CorsFilter implements Filter {

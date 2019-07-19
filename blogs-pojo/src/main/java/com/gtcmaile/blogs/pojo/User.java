@@ -2,10 +2,13 @@ package com.gtcmaile.blogs.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.gtcmaile.blogs.annotation.IsID;
 import lombok.Data;
 
 @Data
 public class User implements Serializable {
+    @IsID
     private Integer id;
 
     private String phone;
@@ -81,6 +84,4 @@ public class User implements Serializable {
     private Integer speaking;
 
     private String email;
-
-    private static final long serialVersionUID = 1L;
 }
