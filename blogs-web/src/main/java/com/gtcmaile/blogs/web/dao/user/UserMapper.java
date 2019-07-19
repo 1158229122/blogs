@@ -1,4 +1,4 @@
-package com.gtcmaile.blogs.web.dao;
+package com.gtcmaile.blogs.web.dao.user;
 
 import java.util.List;
 
@@ -27,5 +27,9 @@ public interface UserMapper {
      */
     User login(User user);
 
+    /**
+     * 查询所有
+     * @return
+     */
     List<User> getAll();
 }

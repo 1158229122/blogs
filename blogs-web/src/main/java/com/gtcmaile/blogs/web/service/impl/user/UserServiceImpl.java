@@ -1,4 +1,4 @@
-package com.gtcmaile.blogs.web.service.impl;
+package com.gtcmaile.blogs.web.service.impl.user;
 
 import com.getmaile.blogs.constant.Error;
 import com.getmaile.blogs.constant.LoginConstant;
@@ -6,9 +6,9 @@ import com.gtcmaile.blogs.pojo.User;
 import com.gtcmaile.blogs.pojo.response.Result;
 import com.gtcmaile.blogs.util.MailUtils;
 import com.gtcmaile.blogs.util.StringUtils;
-import com.gtcmaile.blogs.util.UuidUtil;
-import com.gtcmaile.blogs.web.dao.UserMapper;
-import com.gtcmaile.blogs.web.service.UserService;
+import com.gtcmaile.blogs.util.encryption.UuidUtil;
+import com.gtcmaile.blogs.web.dao.user.UserMapper;
+import com.gtcmaile.blogs.web.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**

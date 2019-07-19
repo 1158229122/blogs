@@ -14,6 +14,5 @@ mybatis:
 logging:
   level:
     com.whfp.tongpaoshop.dao : info
-#指定xml的文件的路径
-#配置redis
+
 

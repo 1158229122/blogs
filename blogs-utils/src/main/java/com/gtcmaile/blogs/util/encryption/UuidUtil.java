@@ -1,4 +1,4 @@
-package com.gtcmaile.blogs.util;
+package com.gtcmaile.blogs.util.encryption;
 
 import java.util.Random;
 import java.util.UUID;

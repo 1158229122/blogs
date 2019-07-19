@@ -3,6 +3,7 @@ package com.gtcmaile.blogs.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.gtcmaile.blogs.annotation.IsID;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class User implements Serializable {
     private Integer id;
 
     private String phone;
-
+    @JSONField(serialize=false)
     private String password;
 
     private String nickname;

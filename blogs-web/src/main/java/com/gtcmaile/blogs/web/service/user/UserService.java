@@ -1,4 +1,4 @@
-package com.gtcmaile.blogs.web.service;
+package com.gtcmaile.blogs.web.service.user;
 
 import com.gtcmaile.blogs.pojo.User;
 import com.gtcmaile.blogs.pojo.response.Result;

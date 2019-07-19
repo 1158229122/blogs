@@ -18,6 +18,8 @@ import org.springframework.jdbc.core.RowMapper;
 /**
  * @Author: jim
  * @Date: 2019/7/19 7:32
+ * 容许实例化,必须作用与超类,实例化方法中添加了对子类的类型扫描
+ * 单独实例化无法使用
  * @Version 1.0
  */
 public abstract class BaseDaoImpl<T>{
