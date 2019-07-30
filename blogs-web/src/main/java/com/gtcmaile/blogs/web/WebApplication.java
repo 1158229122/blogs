@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.gtcmaile.blogs.pojo")
+@EntityScan(basePackages = "com.gtcmaile.gtcmaile.pojo")
 @EnableWebMvc
 public class WebApplication {
 

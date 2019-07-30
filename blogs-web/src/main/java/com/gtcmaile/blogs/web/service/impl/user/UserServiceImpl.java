@@ -2,7 +2,7 @@ package com.gtcmaile.blogs.web.service.impl.user;
 
 import com.getmaile.blogs.constant.Error;
 import com.getmaile.blogs.constant.LoginConstant;
-import com.gtcmaile.blogs.pojo.User;
+import com.gtcmaile.blogs.pojo.user.User;
 import com.gtcmaile.blogs.pojo.response.Result;
 import com.gtcmaile.blogs.util.MailUtils;
 import com.gtcmaile.blogs.util.StringUtils;

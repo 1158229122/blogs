@@ -49,17 +49,29 @@ public class FileUtil {
         try {
             File newFile=new File(StringUtils.concat(webappPath,path,fileName));
             file.transferTo(newFile);
-            String saveName = StringUtils.concat(path, fileName);
-            if(isImage(newFile)){
-                sourceImageCompress(newFile.getPath());
-                breviaryImageCompress(newFile.getPath());
-            }
-            return saveName;
+            return StringUtils.concat(path, fileName);
         } catch (IOException e) {
             log.error("file save error:" + e.getMessage());
             return null;
         }
 
+    }
+
+    /**
+     * 压缩图片并生成缩略图
+     * @param path
+     */
+    public static void compressImg(String path){
+        try {
+            System.out.println(path+"zhixing;e==========");
+            File newFile=new File(StringUtils.concat(webappPath,path));
+            if(isImage(newFile)){
+                sourceImageCompress(newFile.getPath());
+                breviaryImageCompress(newFile.getPath());
+            }
+        } catch (IOException e) {
+            log.error("file compress error:" + e.getMessage());
+        }
     }
 
     /**

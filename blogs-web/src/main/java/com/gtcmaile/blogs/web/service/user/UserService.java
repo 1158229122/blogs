@@ -1,6 +1,6 @@
 package com.gtcmaile.blogs.web.service.user;
 
-import com.gtcmaile.blogs.pojo.User;
+import com.gtcmaile.blogs.pojo.user.User;
 import com.gtcmaile.blogs.pojo.response.Result;
 /**
  * created by jim on 19-6-10 下午2:41

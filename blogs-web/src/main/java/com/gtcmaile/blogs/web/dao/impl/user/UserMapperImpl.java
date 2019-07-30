@@ -1,6 +1,6 @@
 package com.gtcmaile.blogs.web.dao.impl.user;
 
-import com.gtcmaile.blogs.pojo.User;
+import com.gtcmaile.blogs.pojo.user.User;
 import com.gtcmaile.blogs.util.StringUtils;
 import com.gtcmaile.blogs.web.dao.user.UserMapper;
 import com.gtcmaile.blogs.web.dao.base.BaseDaoImpl;

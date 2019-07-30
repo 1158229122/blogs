@@ -2,7 +2,7 @@ package com.gtcmaile.blogs.web.dao.user;
 
 import java.util.List;
 
-import com.gtcmaile.blogs.pojo.User;
+import com.gtcmaile.blogs.pojo.user.User;
 
 
 public interface UserMapper {

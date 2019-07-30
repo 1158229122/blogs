@@ -1,6 +1,6 @@
 package com.gtcmaile.blogs.web.api.user;
 
-import com.gtcmaile.blogs.pojo.User;
+import com.gtcmaile.blogs.pojo.user.User;
 import com.gtcmaile.blogs.pojo.response.Result;
 import com.gtcmaile.blogs.web.service.user.UserService;
 import io.swagger.annotations.Api;

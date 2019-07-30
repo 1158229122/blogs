@@ -1,4 +1,4 @@
-package com.gtcmaile.blogs.pojo;
+package com.gtcmaile.blogs.pojo.user;
 
 import java.util.ArrayList;
 import java.util.Date;

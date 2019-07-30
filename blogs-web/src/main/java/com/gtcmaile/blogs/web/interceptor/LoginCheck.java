@@ -1,7 +1,7 @@
 package com.gtcmaile.blogs.web.interceptor;
 
 import com.alibaba.fastjson.JSON;
-import com.gtcmaile.blogs.pojo.User;
+import com.gtcmaile.blogs.pojo.user.User;
 import com.gtcmaile.blogs.pojo.response.Result;
 import com.gtcmaile.blogs.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,12 +4,12 @@ spring:
   datasource:
     username: root
     password: 123
-    url: jdbc:mysql://192.168.1.175:3306/blogs?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueri&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.1.175:3306/gtcmaile?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueri&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis:
-  mapper-locations: classpath:com/gtcmaile/blogs/dao/mapper/*Mapper.xml
+  mapper-locations: classpath:com/gtcmaile/gtcmaile/dao/mapper/*Mapper.xml
   type-aliases-package: com.whfp.test.bean
 logging:
   level:

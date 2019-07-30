@@ -1,4 +1,4 @@
-package com.gtcmaile.blogs.pojo;
+package com.gtcmaile.blogs.pojo.user;
 
 import java.io.Serializable;
 import java.util.Date;
